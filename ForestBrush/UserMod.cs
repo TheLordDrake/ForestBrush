@@ -1,10 +1,10 @@
-﻿using ColossalFramework;
+using ColossalFramework;
 using ColossalFramework.Plugins;
 using ColossalFramework.UI;
 using ForestBrush.Persistence;
 using ForestBrush.Redirection;
 using ForestBrush.TranslationFramework;
-using Harmony;
+using HarmonyLib;
 using ICities;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ namespace ForestBrush
         private GameObject forestBrushGameObject;
         private UIDropDown searchLogic;
         private UIDropDown newBrushBehaviour;
-        private HarmonyInstance Harmony { get; set; }
+        private Harmony Harmony { get; set; }
         private const string HarmonyID = "com.tpb.forestbrush";
 
         public string Name => Constants.ModName;
@@ -107,7 +107,7 @@ namespace ForestBrush
         private void Patch() {
             if (!IsModEnabled(593588108UL, "Prop & Tree Anarchy")) {
                 if (Harmony == null) {
-                    Harmony = HarmonyInstance.Create(HarmonyID);
+                    Harmony = new Harmony(HarmonyID);
                     Harmony.PatchAll(Assembly.GetExecutingAssembly());
 
                 }
